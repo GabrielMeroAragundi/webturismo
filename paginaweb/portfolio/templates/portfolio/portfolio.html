@@ -1,0 +1,27 @@
+
+{% extends 'core/base.html'%}
+{% block title %}Lugares a Conocer{% endblock%} 
+{% block background %}{% load static%}{% static 'core/img/portfolio-bg.png' %}{% endblock %}
+
+{% block headers %} 
+    <h1><!--comentario--></h1>
+    <span class="subheading"><!--comentario--></span>
+{% endblock %} 
+
+{% block content %}
+    {% for project in projects %}
+        <!-- Proyecto -->
+            <div class="container-cards m-0 row justify-content-length">  	
+              <img class="img-fluid card " src="{{ project.image.url }}" alt="">
+            </div>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>              
+                
+                <h1 class="animate__animated animate__backInRight  col-12 text-length p-0">{{ project.title }}</h1>
+                
+                <h5 class="animate__animated animate__backInUp col-12 text-length p-0">{{ project.description }}</h5>
+                <!-- <p><a href="http://google.com">Más información</a></p> -->
+                  </div>
+             </div>
+            </div>
+    {% endfor %}
+{% endblock%}

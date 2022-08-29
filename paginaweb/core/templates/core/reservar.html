@@ -1,0 +1,162 @@
+
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!--<link rel="stylesheet" href="css/estilos.css"> -->
+{% extends 'core/base.html'%}
+{% block title %}Reservaciones{% endblock%} 
+{% block background %}{% load static%}{% static 'core/img/reservacion.png'  %}{% endblock %}
+
+{% block headers %} 
+<h1>DISFRUTA DE TUS VACIONES</h1>
+<span class="subheading">Crucita-Manabí-Ecuador</span>
+{% endblock %} 
+
+
+{% block content %}
+
+<body>
+
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
+                    <div class="p-2 mb-4 bg-primary bg-gradient fw-bold text-white">MENU DE RESERVACIONES</div>
+                    <form class="row g-8 needs-validation" novalidate method="post">
+                    <h6> INGRESE SUS DATOS</h6>
+                        <div class="col-md-4 position-relative">
+                          <label for="nombre" class="form-label" >Nombre</label>
+                            {{form.input}}
+                            {{reservaForm.nombre}}
+                            <!-- Mensajes para validación   -->
+                            <div class="valid-tooltip">¡Campo válido!</div>
+                            <div class="invalid-tooltip">Debe completar los datos.</div>
+                        </div>
+                        <div class="col-md-4 position-relative">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            {{reservaForm.apellido}}
+                            <!-- Mensajes para validación   -->
+                            <div class="valid-tooltip">¡Campo válido!</div>
+                            <div class="invalid-tooltip">Debe completar los datos.</div>
+                        </div>
+
+                        <div class="col-md-4 position-relative">
+                            <label for="cedula" class="form-label">N° de ID</label>
+                            {{reservaForm.cedula}}
+                            <!-- Mensajes para validación   -->
+                            <div class="valid-tooltip">¡Campo válido!</div>
+                            <div class="invalid-tooltip">Debe completar los datos.</div>
+                        </div>
+
+                        <div class="col-md-4 position-relative">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            {{reservaForm.telefono}}
+                            <!-- Mensajes para validación   -->
+                            <div class="valid-tooltip">¡Campo válido!</div>
+                            <div class="invalid-tooltip">Debe completar los datos.</div>
+                        </div>
+
+                      <div class="col-md-4 position-relative">
+                            <label for="mail" class="form-label">Correo Electronico</label>
+                            {{reservaForm.correo}}                            <!-- Mensajes para validación   -->
+                            <div class="valid-tooltip">¡Campo válido!</div>
+                            <div class="invalid-tooltip">Debe completar los datos.</div>
+                        </div>
+
+                        <h6><br>ESPECIFIQUE EL NUMERO  DE VISITANTES DE ACUERDO A LO INDICADO <br/></h6>
+                        <div class="col-md-3 position-relative">
+                          <label for="adultos" class="form-label">Cuantos adultos?</label>
+                          {{reservaForm.adultos}}
+                          <!-- Mensajes para validación   -->
+                          <div class="valid-tooltip">¡Campo válido!</div>
+                          <div class="invalid-tooltip">Debe completar los datos.</div>
+                      </div>
+
+                        <div class="col-md-3 position-relative">
+                          <label for="menores" class="form-label">Cuantos Menores?</label>
+                          {{reservaForm.menores}}
+                          <!-- Mensajes para validación   -->
+                          <div class="valid-tooltip">¡Campo válido!</div>
+                          <div class="invalid-tooltip">Debe completar los datos.</div>
+                      </div>
+
+                    <h6><br>MARQUE LAS OPCIONES PARA  SU PAQUETE TURISTICO AQUI <br/></h6>
+                      
+                    <div>
+                      {{reservaForm.guia}}<label for="guia" class="form-label">.Requiere Guía Turístico</label><br/>
+                      
+                      {{reservaForm.lancha}}<label for="lancha" class="form-label">.Quiero Recorrido en Lancha</label><br/>
+                                    
+                      {{reservaForm.hospedaje}}<label for="hospedaje" class="form-label">.Requiero Hospedaje</label><br/>
+                                                             
+                      {{reservaForm.sendero}}<label for="sendero" class="form-label">.Recorrido por el Sendero Ecologico</label><br/>
+                                   
+                      {{reservaForm.salinas}}<label for="salinas" class="form-label">.Recorrido por Pampas Salineras</label><br/>
+
+                      {{reservaForm.museo}}<label for="museo" class="form-label">.Recorrido por el museo</label><br/>
+
+                      {{reservaForm.carpas}}<label for="carpas" class="form-label">.Requiere Carpas para Sol</label><br/>
+                                    
+                        <br>
+                        <h6><br>INDIQUE SU FECHA  DE VISITA  <br/></h6>
+                        <label for="mail" class="form-label">Fecha Inicio</label>
+                        {{reservaForm.fechaInicio}}
+                        <label for="mail" class="form-label">Fecha Fin</label>
+                        {{reservaForm.fechaFin}}
+
+
+
+                        <!--zona precio-->
+                        <h5 >Total :</h5>
+                        <label class="form-label" id="days"></label>
+
+                        <label class="form-label" id="total"></label>
+
+
+                        <input type="hidden" id="preciofinal" name= "preciofinal" value = 0>
+                      
+                        <!--zona precio-->
+
+                    </div>
+                         <div class="col-12">
+                          <br>
+                        <button class="btn btn-warning fw-bold float-end" type="submit">Enviar</button>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+
+        <script src="/static/core/js/calculate.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+(function () {
+  'use strict'
+
+  // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+  var forms = document.querySelectorAll('.needs-validation')
+
+  //Recorremos los forms y evitamos en envío sin validacion
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+    </script>
+
+    
+{% endblock%}
+  </body>
+  
+</html>
